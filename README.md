@@ -1,3 +1,7 @@
+# Firebase API key
+To enable Firebase connection, create src/firebase/config-secret.js file with correct key:
+    export const firebaseApiKey = "";
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
