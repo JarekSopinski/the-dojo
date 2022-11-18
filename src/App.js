@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 
+import Navbar from './components/navbar/Navbar';
 import Dashboard from './pages/dashboard/Dashboard';
 import Create from './pages/create/Create';
 import Login from './pages/login/Login';
@@ -12,6 +13,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <div className='container'>
+          <Navbar />
           <Switch>
             <Route exact path={'/'}>
               <Dashboard />
