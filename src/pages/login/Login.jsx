@@ -6,11 +6,11 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const { isPending, error } = useLogin();
+  const { login, isPending, error } = useLogin();
 
   const handleLogin = e => {
     e.preventDefault();
-    console.log(email, password);
+    login(email, password);
   };
 
   return (
