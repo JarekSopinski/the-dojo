@@ -4,6 +4,7 @@ import './App.css';
 
 import Navbar from './components/navbar/Navbar';
 import Sidebar from './components/sidebar/Sidebar';
+import OnlineUsers from './components/onlineUsers/OnlineUsers';
 
 import Dashboard from './pages/dashboard/Dashboard';
 import Create from './pages/create/Create';
@@ -43,6 +44,7 @@ function App() {
               </Route>
             </Switch>
           </div>
+          {user && <OnlineUsers />}
         </BrowserRouter>
       )}
     </div>
