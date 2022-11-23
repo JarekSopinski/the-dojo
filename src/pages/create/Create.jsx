@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import Select from 'react-select';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useCollection } from '../../hooks/useCollection';
+import { useFirestore } from '../../hooks/useFirestore';
 import { timestamp } from '../../firebase/config';
 import './Create.css';
 
@@ -13,9 +15,11 @@ const categories = [
 ];
 
 export default function Create() {
+
+  const { addDocument, response } = useFirestore('projects');
   const { documents } = useCollection('users');
-  const [users, setUsers] = useState([]);
   const { user } = useAuthContext();
+  const history = useHistory();
 
   const [name, setName] = useState('');
   const [details, setDetails] = useState('');
@@ -23,6 +27,7 @@ export default function Create() {
   const [category, setCategory] = useState('');
   const [assignedUsers, setAssignedUsers] = useState([]);
 
+  const [users, setUsers] = useState([]);
   const [formError, setFormError] = useState(null);
 
   useEffect(() => {
@@ -34,7 +39,7 @@ export default function Create() {
     }
   }, [documents]);
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setFormError(null);
 
@@ -71,7 +76,12 @@ export default function Create() {
       assignedUsersList
     };
 
-    console.log(project);
+    await addDocument(project);
+    if (!response.error){
+      history.push('/');
+    } else {
+      setFormError(response.error);
+    }
   };
 
   return (
