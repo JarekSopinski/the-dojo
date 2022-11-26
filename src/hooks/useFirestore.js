@@ -67,7 +67,7 @@ export const useFirestore = (collection) => {
   }
 
   // update document
-  const updateDocuments = async (id, updates) => {
+  const updateDocument = async (id, updates) => {
     dispatch({ type: 'IS_PENDING' });
 
     try {
@@ -84,6 +84,6 @@ export const useFirestore = (collection) => {
     return () => setIsCancelled(true)
   }, [])
 
-  return { addDocument, deleteDocument, updateDocuments, response }
+  return { addDocument, deleteDocument, updateDocument, response }
 
 }
