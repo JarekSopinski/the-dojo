@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useCollection } from '../../hooks/useCollection';
@@ -19,7 +19,7 @@ export default function Create() {
   const { addDocument, response } = useFirestore('projects');
   const { documents } = useCollection('users');
   const { user } = useAuthContext();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [name, setName] = useState('');
   const [details, setDetails] = useState('');
@@ -78,7 +78,7 @@ export default function Create() {
 
     await addDocument(project);
     if (!response.error){
-      history.push('/');
+      navigate('/');
     } else {
       setFormError(response.error);
     }
